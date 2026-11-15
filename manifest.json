@@ -1,0 +1,20 @@
+{
+  "manifestVersion": "1.2",
+  "name": "claude-code-portable",
+  "targetOS": "Windows 10/11",
+  "components": {
+    "node": "24.9.0",
+    "python": "embedded / WinPython 3.x",
+    "git": "latest-portable",
+    "vscode": "latest-portable",
+    "freellmapi": "1.0.0",
+    "claude_code": "cli-only via freellmapi",
+    "windows_terminal": "latest-portable",
+    "fiddler_classic": "latest-portable",
+    "pageant": "latest-portable"
+  },
+  "security": {
+    "diskPersistence": false,
+    "credentialIsolation": "process-memory"
+  }
+}

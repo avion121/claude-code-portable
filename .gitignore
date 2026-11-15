@@ -1,0 +1,31 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.npm-cache/
+
+# OS Generated Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Runtimes & Portables (exclude large downloaded binaries if required)
+# Remove comments below if you want git to ignore actual zip/exe extractions
+# 02_RUNTIMES/*
+# !02_RUNTIMES/.gitkeep
+# 03_AI_TOOLS/*
+# !03_AI_TOOLS/.gitkeep
+
+# Sensitive Credentials / Configs
+.env
+.env.local
+*.pem
+*.key
+
+# Temp files
+*.tmp
+*.log

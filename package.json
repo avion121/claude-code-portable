@@ -1,0 +1,26 @@
+{
+  "name": "claude-code-portable",
+  "version": "1.2.0",
+  "description": "Zero-footprint portable developer & Claude Code CLI suite for USB drives",
+  "main": "03_AI_TOOLS/freellmapi/dist/index.js",
+  "author": "avion121",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avion121/claude-code-portable.git"
+  },
+  "scripts": {
+    "launch": "run-claude.bat",
+    "verify": "00_LAUNCHERS/Verify-Portable-Env.bat"
+  },
+  "keywords": [
+    "claude-code-cli",
+    "portable",
+    "freellmapi",
+    "pendrive",
+    "zero-footprint",
+    "windows-terminal",
+    "fiddler",
+    "pageant"
+  ]
+}
