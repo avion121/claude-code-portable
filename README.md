@@ -59,14 +59,22 @@ claude-code-portable/
 
 ## Quick Start Guide
 
-### 1. Verification
-Before running on a new computer, test your setup:
+### 1. First-Time Setup (New PC / Fresh USB)
+On a new computer, run the **auto-setup** which downloads and extracts all runtimes:
+```cmd
+PORTABLE-SUITE-MASTER.bat
+# Select Option [0] for Auto-Download & Setup All Runtimes
+```
+This downloads ~1.5 GB and populates all folders automatically. Requires internet.
+
+### 2. Verification
+After setup, verify everything is in place:
 ```cmd
 PORTABLE-SUITE-MASTER.bat
 # Select Option [7] for System Integrity Diagnostics
 ```
 
-### 2. Launching Claude Code CLI
+### 3. Launching Claude Code CLI
 Double-click `run-claude.bat` or run Option `[1]` from `PORTABLE-SUITE-MASTER.bat`.
 - Runs a dry-run check to verify configuration.
 - Launches Claude Code CLI with in-memory key injection via `freellmapi`.

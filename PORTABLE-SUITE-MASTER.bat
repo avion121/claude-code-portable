@@ -38,10 +38,11 @@ echo   [6] Open Developer Command Prompt (Node + Python + Git)
 echo   [7] Run System Health & Environment Check
 echo   [8] Initialize Git & Push Project to GitHub (avion121)
 echo   [9] Auto-Setup Directory Structure & Check Runtimes
-echo   [0] Exit
+echo   [0] Auto-Download & Setup All Runtimes (First Time)
+echo   [X] Exit
 echo.
 echo ============================================================
-set /p CHOICE="Select an option (0-9) and press Enter: "
+set /p CHOICE="Select an option (0-10, X) and press Enter: "
 
 if "%CHOICE%"=="1" goto LAUNCH_CLAUDE
 if "%CHOICE%"=="2" goto LAUNCH_VSCODE
@@ -52,7 +53,8 @@ if "%CHOICE%"=="6" goto LAUNCH_CLI
 if "%CHOICE%"=="7" goto DIAGNOSTICS
 if "%CHOICE%"=="8" goto PUSH_GITHUB
 if "%CHOICE%"=="9" goto SETUP_DIRS
-if "%CHOICE%"=="0" goto EXIT_APP
+if "%CHOICE%"=="0" goto SETUP_RUNTIMES
+if /i "%CHOICE%"=="X" goto EXIT_APP
 goto MENU
 
 :LAUNCH_CLAUDE
@@ -273,6 +275,12 @@ if not exist "%PORTABLE_ROOT%05_UTILITIES\pageant" mkdir "%PORTABLE_ROOT%05_UTIL
 echo [OK] All directories verified/created.
 echo.
 pause
+goto MENU
+
+:SETUP_RUNTIMES
+cls
+echo [*] Launching auto runtime setup...
+call "%PORTABLE_ROOT%00_LAUNCHERS\Setup-Runtimes.bat"
 goto MENU
 
 :EXIT_APP
