@@ -11,8 +11,8 @@ echo ============================================================
 echo.
 echo Installing into: %DEV_ROOT%
 echo.
-set /p CONFIRM="Continue? (Y/N): "
-if /i not "%CONFIRM%"=="Y" ( echo Aborted. & pause & exit /b 1 )
+echo [*] Automatic setup mode - proceeding without confirmation.
+set CONFIRM=Y
 
 echo.
 echo [*] Creating directory structure...
