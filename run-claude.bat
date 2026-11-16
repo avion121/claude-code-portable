@@ -3,6 +3,13 @@ setlocal enableextensions
 cd /d "%~dp0"
 set "PORTABLE_ROOT=%CD%"
 
+rem Keep window open on any early exit
+if "%~1"=="/keep" goto :KEEP_OPEN
+cmd /k "%~f0" /keep
+exit /b 0
+
+:KEEP_OPEN
+
 echo ============================================================
 echo      PORTABLE DEV SUITE - FULLY AUTOMATIC LAUNCH
 echo ============================================================
@@ -12,21 +19,26 @@ echo.
 rem Step 1: Auto-update from GitHub
 echo [*] Step 1/4: Checking for updates from GitHub...
 cd /d "%PORTABLE_ROOT%"
-git remote set-url origin https://github.com/avion121/claude-code-portable.git 2>nul
-if exist .git (
-    git fetch --quiet 2>nul
-    if errorlevel 1 (
-        echo [WARN] Could not fetch updates (offline). Continuing locally.
-    ) else (
-        git pull --quiet --ff-only 2>nul
-        if errorlevel 1 (
-            echo [WARN] Pull failed (merge conflict). Continuing locally.
-        ) else (
-            echo [OK] Updated to latest version.
-        )
-    )
+where git >nul 2>&1
+if errorlevel 1 (
+    echo [WARN] git not in PATH - skipping auto-update. Install Git or run Setup-Runtimes.bat first.
 ) else (
-    echo [WARN] Not a git repo - skipping update.
+    git remote set-url origin https://github.com/avion121/claude-code-portable.git 2>nul
+    if exist .git (
+        git fetch --quiet 2>nul
+        if errorlevel 1 (
+            echo [WARN] Could not fetch updates (offline). Continuing locally.
+        ) else (
+            git pull --quiet --ff-only 2>nul
+            if errorlevel 1 (
+                echo [WARN] Pull failed (merge conflict). Continuing locally.
+            ) else (
+                echo [OK] Updated to latest version.
+            )
+        )
+    ) else (
+        echo [WARN] Not a git repo - skipping update.
+    )
 )
 
 rem Step 2: Auto-setup runtimes if missing
