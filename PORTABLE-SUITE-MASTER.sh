@@ -20,13 +20,10 @@ menu() {
     echo "  [2] Launch Portable VS Code"
     echo "  [3] Open Developer Prompt (Node + Python + Git)"
     echo "  [4] Run System Health & Environment Check"
-    echo "  [5] Initialize Git & Push to GitHub (avion121)"
-    echo "  [6] Auto-Setup Directory Structure"
-    echo "  [7] Auto-Download & Setup All Runtimes (First Time)"
     echo "  [0] Exit"
     echo
     echo "============================================================"
-    read -rp "Select an option (0-7) and press Enter: " choice
+    read -rp "Select an option (0-4) and press Enter: " choice
 }
 
 while true; do
@@ -75,46 +72,6 @@ while true; do
                 bash "$PORTABLE_ROOT/00_LAUNCHERS/Verify-Portable-Env.sh"
             else
                 bash "$PORTABLE_ROOT/00_LAUNCHERS/Verify-Portable-Env.bat" 2>/dev/null || echo "[INFO] No verifier available on this OS."
-            fi
-            read -rp "Press Enter to return to menu..."
-            ;;
-        5)
-            clear
-            echo "============================================================"
-            echo "     GIT INITIALIZATION & GITHUB PUSH (avion121)"
-            echo "============================================================"
-            echo
-            echo "Target Repository: https://github.com/avion121/claude-code-portable.git"
-            echo
-            read -rp "Proceed with Git commit and push? (y/N): " confirm
-            if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
-                continue
-            fi
-            cd "$PORTABLE_ROOT"
-            git init
-            git add .
-            git commit -m "feat: portable claude code cli suite with freellmapi" || echo "[INFO] Nothing to commit."
-            git branch -M main
-            git remote remove origin >/dev/null 2>&1
-            git remote add origin https://github.com/avion121/claude-code-portable.git
-            git push -u origin main
-            read -rp "Press Enter to return to menu..."
-            ;;
-        6)
-            clear
-            mkdir -p "$PORTABLE_ROOT/00_LAUNCHERS" "$PORTABLE_ROOT/01_EDITORS" \
-                     "$PORTABLE_ROOT/02_RUNTIMES" "$PORTABLE_ROOT/02_RUNTIMES/python-portable" \
-                     "$PORTABLE_ROOT/03_AI_TOOLS" "$PORTABLE_ROOT/04_DEV_TOOLS" \
-                     "$PORTABLE_ROOT/05_UTILITIES"
-            echo "[OK] All directories verified/created."
-            read -rp "Press Enter to return to menu..."
-            ;;
-        7)
-            clear
-            if [ -f "$PORTABLE_ROOT/00_LAUNCHERS/Setup-Runtimes.sh" ]; then
-                bash "$PORTABLE_ROOT/00_LAUNCHERS/Setup-Runtimes.sh"
-            else
-                echo "[WARN] Linux/macOS setup script not found. Use the Windows one or run manually."
             fi
             read -rp "Press Enter to return to menu..."
             ;;

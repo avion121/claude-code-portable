@@ -1,17 +1,14 @@
 {
-  "manifestVersion": "1.2",
+  "manifestVersion": "1.3",
   "name": "claude-code-portable",
-  "targetOS": "Windows 10/11",
+  "targetOS": "Windows 10/11, Linux, macOS",
   "components": {
     "node": "24.9.0",
-    "python": "embedded / WinPython 3.x",
-    "git": "latest-portable",
+    "python": "3.12.7 embeddable",
+    "git": "2.47.1 portable",
     "vscode": "latest-portable",
     "freellmapi": "1.0.0",
-    "claude_code": "cli-only via freellmapi",
-    "windows_terminal": "latest-portable",
-    "fiddler_classic": "latest-portable",
-    "pageant": "latest-portable"
+    "claude_code": "cli-only via freellmapi"
   },
   "security": {
     "diskPersistence": false,

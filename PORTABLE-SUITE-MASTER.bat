@@ -143,65 +143,6 @@ echo.
 pause
 goto MENU
 
-:PUSH_GITHUB
-cls
-echo ============================================================
-echo         GIT INITIALIZATION ^& GITHUB PUSH (avion121)
-echo ============================================================
-echo.
-echo Target Repository: https://github.com/avion121/claude-code-portable.git
-echo.
-set /p CONFIRM="Proceed with Git commit and push? (Y/N): "
-if /i not "%CONFIRM%"=="Y" goto MENU
-
-echo.
-echo [*] Initializing Git...
-git init
-git add .
-git commit -m "feat: portable claude code cli suite with freellmapi"
-git branch -M main
-git remote remove origin >nul 2>&1
-git remote add origin https://github.com/avion121/claude-code-portable.git
-
-echo [*] Pushing to GitHub...
-git push -u origin main
-
-if errorlevel 1 (
-    echo.
-    echo [ERROR] Push failed. Check internet connection and GitHub credentials.
-) else (
-    echo.
-    echo [SUCCESS] Successfully pushed to https://github.com/avion121/claude-code-portable.git
-)
-echo.
-pause
-goto MENU
-
-:SETUP_DIRS
-cls
-echo ============================================================
-echo            DIRECTORY STRUCTURE INITIALIZATION
-echo ============================================================
-echo.
-if not exist "%PORTABLE_ROOT%00_LAUNCHERS" mkdir "%PORTABLE_ROOT%00_LAUNCHERS"
-if not exist "%PORTABLE_ROOT%01_EDITORS" mkdir "%PORTABLE_ROOT%01_EDITORS"
-if not exist "%PORTABLE_ROOT%02_RUNTIMES" mkdir "%PORTABLE_ROOT%02_RUNTIMES"
-if not exist "%PORTABLE_ROOT%02_RUNTIMES\python-portable" mkdir "%PORTABLE_ROOT%02_RUNTIMES\python-portable"
-if not exist "%PORTABLE_ROOT%03_AI_TOOLS" mkdir "%PORTABLE_ROOT%03_AI_TOOLS"
-if not exist "%PORTABLE_ROOT%04_DEV_TOOLS" mkdir "%PORTABLE_ROOT%04_DEV_TOOLS"
-if not exist "%PORTABLE_ROOT%05_UTILITIES" mkdir "%PORTABLE_ROOT%05_UTILITIES"
-
-echo [OK] All directories verified/created.
-echo.
-pause
-goto MENU
-
-:SETUP_RUNTIMES
-cls
-echo [*] Launching auto runtime setup...
-call "%PORTABLE_ROOT%00_LAUNCHERS\Setup-Runtimes.bat"
-goto MENU
-
 :EXIT_APP
 cls
 echo Goodbye!
