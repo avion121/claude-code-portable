@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Claude Code CLI",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/03_AI_TOOLS/freellmapi/dist/index.js",
+      "args": ["launch"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "PATH": "${workspaceFolder}/02_RUNTIMES/node-v24.9.0-win-x64;${workspaceFolder}/02_RUNTIMES/Git-Portable/cmd;${workspaceFolder}/02_RUNTIMES/Git-Portable/usr/bin;${workspaceFolder}/02_RUNTIMES/python-portable;${workspaceFolder}/02_RUNTIMES/python-portable/Scripts;${env:PATH}",
+        "npm_config_cache": "${workspaceFolder}/02_RUNTIMES/node-v24.9.0-win-x64/.npm-cache"
+      }
+    },
+    {
+      "name": "Debug Current File (Node.js)",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    }
+  ]
+}

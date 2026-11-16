@@ -81,8 +81,8 @@ set "PATH=%PORTABLE_ROOT%\02_RUNTIMES\node-v24.9.0-win-x64;%PORTABLE_ROOT%\02_RU
 set "npm_config_cache=%PORTABLE_ROOT%\02_RUNTIMES\node-v24.9.0-win-x64\.npm-cache"
 
 if exist "%PORTABLE_ROOT%\01_EDITORS\VSCode-Portable\Code.exe" (
-    start "" "%PORTABLE_ROOT%\01_EDITORS\VSCode-Portable\Code.exe"
-    echo [OK] VS Code launched.
+    start "" "%PORTABLE_ROOT%\01_EDITORS\VSCode-Portable\Code.exe" "%PORTABLE_ROOT%"
+    echo [OK] VS Code launched with portable workspace.
 ) else (
     echo [ERROR] VS Code Portable not found at 01_EDITORS\VSCode-Portable\Code.exe
     pause

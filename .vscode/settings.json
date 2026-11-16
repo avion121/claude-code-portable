@@ -1,0 +1,17 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/02_RUNTIMES/python-portable/python.exe",
+  "python.analysis.extraPaths": ["${workspaceFolder}/02_RUNTIMES/python-portable/Lib/site-packages"],
+  "terminal.integrated.env.windows": {
+    "PATH": "${workspaceFolder}/02_RUNTIMES/node-v24.9.0-win-x64;${workspaceFolder}/02_RUNTIMES/Git-Portable/cmd;${workspaceFolder}/02_RUNTIMES/Git-Portable/usr/bin;${workspaceFolder}/02_RUNTIMES/python-portable;${workspaceFolder}/02_RUNTIMES/python-portable/Scripts;${env:PATH}"
+  },
+  "terminal.integrated.env.linux": {
+    "PATH": "${workspaceFolder}/02_RUNTIMES/node/bin:${workspaceFolder}/02_RUNTIMES/python/bin:${workspaceFolder}/02_RUNTIMES/git/bin:${env:PATH}"
+  },
+  "terminal.integrated.env.macos": {
+    "PATH": "${workspaceFolder}/02_RUNTIMES/node/bin:${workspaceFolder}/02_RUNTIMES/python/bin:${workspaceFolder}/02_RUNTIMES/git/bin:${env:PATH}"
+  },
+  "npm.configCache": "${workspaceFolder}/02_RUNTIMES/node-v24.9.0-win-x64/.npm-cache",
+  "files.exclude": {
+    "**/._tmp_downloads": true
+  }
+}

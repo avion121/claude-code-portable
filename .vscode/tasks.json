@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Launch Claude Code CLI",
+      "type": "shell",
+      "command": "node",
+      "args": ["03_AI_TOOLS/freellmapi/dist/index.js", "launch"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "none"
+      }
+    },
+    {
+      "label": "Verify Portable Environment",
+      "type": "shell",
+      "command": "00_LAUNCHERS/Verify-Portable-Env.bat",
+      "problemMatcher": [],
+      "group": {
+        "kind": "none"
+      }
+    },
+    {
+      "label": "Setup Runtimes (First Time)",
+      "type": "shell",
+      "command": "00_LAUNCHERS/Setup-Runtimes.bat",
+      "problemMatcher": [],
+      "group": {
+        "kind": "none"
+      }
+    }
+  ]
+}
