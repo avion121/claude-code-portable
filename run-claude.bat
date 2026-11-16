@@ -19,7 +19,7 @@ echo.
 rem Step 1: Auto-update from GitHub
 echo [*] Step 1/4: Checking for updates from GitHub...
 cd /d "%PORTABLE_ROOT%"
-where git >nul 2>&1
+where git >nul 2>nul
 if errorlevel 1 (
     echo [WARN] git not in PATH - skipping auto-update. Install Git or run Setup-Runtimes.bat first.
 ) else (
