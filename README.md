@@ -1,11 +1,11 @@
 # Portable Claude Code CLI & Dev Suite
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11-0078D6.svg)]()
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-0078D6.svg)]()
 
-A complete, zero-footprint, USB-portable development environment equipped with **Claude Code CLI** (invoked securely via `freellmapi`), Node.js runtime, **Python backend runtime**, Git Bash, VS Code Portable, Windows Terminal, Fiddler Classic, and Pageant SSH Agent.
+A complete, zero-footprint, USB-portable development environment equipped with **Claude Code CLI** (invoked securely via `freellmapi`), Node.js runtime, **Python backend runtime**, Git, VS Code, Windows Terminal, Fiddler Classic, and Pageant SSH Agent.
 
-Designed to run off any pendrive or external drive on any Windows PC **without administrative privileges** and without leaving traces in system directories or registries.
+Designed to run off any pendrive or external drive on **Windows, Linux, and macOS** **without administrative privileges** and without leaving traces in system directories or registries.
 
 ---
 
@@ -59,22 +59,35 @@ claude-code-portable/
 
 ## Quick Start Guide
 
-### 1. First-Time Setup (New PC / Fresh USB)
-On a new computer, run the **auto-setup** which downloads and extracts all runtimes:
+### 1. Clone to Your USB Drive
 ```cmd
-PORTABLE-SUITE-MASTER.bat
-# Select Option [0] for Auto-Download & Setup All Runtimes
+# Windows
+git clone https://github.com/avion121/claude-code-portable.git E:\
+# Linux / macOS
+git clone https://github.com/avion121/claude-code-portable.git /media/your_usb
 ```
-This downloads ~1.5 GB and populates all folders automatically. Requires internet.
 
-### 2. Verification
+### 2. Auto-Update & Launch (One Command)
+Double-click the root launcher — it **checks for updates, runs health checks, and launches the menu** all in one go:
+
+| OS | Command |
+|---|---|
+| **Windows** | `run-claude.bat` |
+| **Linux / macOS** | `./run-claude.sh` |
+
+### 3. First-Time Setup (New PC / Fresh USB)
+Run the master menu and pick **Option [0]** (Windows) or **Option [8]** (Linux/macOS) to download and extract all runtimes automatically. Requires internet.
+
+### 4. Verification
 After setup, verify everything is in place:
 ```cmd
-PORTABLE-SUITE-MASTER.bat
-# Select Option [7] for System Integrity Diagnostics
+# Windows
+PORTABLE-SUITE-MASTER.bat -> Option [7]
+# Linux / macOS
+./PORTABLE-SUITE-MASTER.sh -> Option [5]
 ```
 
-### 3. Launching Claude Code CLI
+### 5. Launching Claude Code CLI
 Double-click `run-claude.bat` or run Option `[1]` from `PORTABLE-SUITE-MASTER.bat`.
 - Runs a dry-run check to verify configuration.
 - Launches Claude Code CLI with in-memory key injection via `freellmapi`.
@@ -86,6 +99,21 @@ Double-click `run-claude.bat` or run Option `[1]` from `PORTABLE-SUITE-MASTER.ba
 - **Fiddler Proxy**: Option `[4]`
 - **Pageant SSH Agent**: Option `[5]`
 - **Portable Console**: Option `[6]` (`node -v`, `python --version`, `git --version` in PATH).
+
+---
+
+## Cross-Platform Support
+
+The suite runs on **Windows, Linux, and macOS**. Platform-specific scripts:
+
+| Purpose | Windows | Linux / macOS |
+|---|---|---|
+| Root launcher (auto-update + menu) | `run-claude.bat` | `./run-claude.sh` |
+| Master control menu | `PORTABLE-SUITE-MASTER.bat` | `./PORTABLE-SUITE-MASTER.sh` |
+| Health check | `Verify-Portable-Env.bat` | `Verify-Portable-Env.sh` |
+| Auto runtime setup | `Setup-Runtimes.bat` | `Setup-Runtimes.sh` |
+
+On Linux/macOS the suite uses **system-installed** Node, Python, and Git (no admin required) — it copies them into the portable folders during setup. Claude Code CLI still runs via `freellmapi` for zero-trace credential injection.
 
 ---
 
