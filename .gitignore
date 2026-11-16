@@ -29,3 +29,6 @@ $RECYCLE.BIN/
 # Temp files
 *.tmp
 *.log
+
+# Auto-setup temp download folder
+._tmp_downloads/
