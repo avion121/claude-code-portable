@@ -163,7 +163,7 @@ if exist "%NODE_DIR%\node.exe" (
     echo [OK] Node.js binary found.
 ) else (
     echo [FAIL] Node.js missing at %NODE_DIR%
-    set /a ERR_COUNT+=1
+    set /a ERR_COUNT=ERR_COUNT+1
 )
 
 if exist "%PYTHON_DIR%\python.exe" (
@@ -176,7 +176,7 @@ if exist "%GIT_DIR%\cmd\git.exe" (
     echo [OK] Portable Git found.
 ) else (
     echo [FAIL] Git missing at %GIT_DIR%
-    set /a ERR_COUNT+=1
+    set /a ERR_COUNT=ERR_COUNT+1
 )
 
 if exist "%WT_DIR%\wt.exe" (
