@@ -20,17 +20,17 @@ rem Step 1: Auto-update from GitHub
 echo [*] Step 1/4: Checking for updates from GitHub...
 cd /d "%PORTABLE_ROOT%"
 where git >nul 2>nul
-if errorlevel 1 (
+if %errorlevel% NEQ 0 (
     echo [WARN] git not in PATH - skipping auto-update. Install Git or run Setup-Runtimes.bat first.
 ) else (
     git remote set-url origin https://github.com/avion121/claude-code-portable.git 2>nul
     if exist .git (
         git fetch --quiet 2>nul
-        if errorlevel 1 (
+        if %errorlevel% NEQ 0 (
             echo [WARN] Could not fetch updates (offline). Continuing locally.
         ) else (
             git pull --quiet --ff-only 2>nul
-            if errorlevel 1 (
+            if %errorlevel% NEQ 0 (
                 echo [WARN] Pull failed (merge conflict). Continuing locally.
             ) else (
                 echo [OK] Updated to latest version.
