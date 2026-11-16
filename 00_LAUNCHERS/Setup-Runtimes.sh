@@ -12,7 +12,7 @@ echo
 echo "OS: $(uname -s)"
 echo "Root: $PORTABLE_ROOT"
 echo
-echo "This will download and extract all required runtimes (~1.5 GB)."
+echo "This will download and extract all required runtimes."
 echo "Requires internet connection."
 echo
 read -rp "Continue? (y/N): " confirm
@@ -27,14 +27,11 @@ mkdir -p "$PORTABLE_ROOT/01_EDITORS" \
          "$PORTABLE_ROOT/02_RUNTIMES/git" \
          "$PORTABLE_ROOT/03_AI_TOOLS" \
          "$PORTABLE_ROOT/04_DEV_TOOLS" \
-         "$PORTABLE_ROOT/05_UTILITIES/Windows-Terminal" \
-         "$PORTABLE_ROOT/05_UTILITIES/Fiddler" \
-         "$PORTABLE_ROOT/05_UTILITIES/pageant" \
-         "$PORTABLE_ROOT/05_UTILITIES/7-Zip-Portable" \
+         "$PORTABLE_ROOT/05_UTILITIES" \
          "$TEMP_DIR"
 
 echo
-echo "[1/6] Downloading Node.js LTS (portable, no sudo)..."
+echo "[1/4] Setting up Node.js LTS..."
 if command -v nvm >/dev/null 2>&1; then
     echo "[INFO] nvm detected - installing Node LTS into portable folder..."
     NVM_DIR="$HOME/.nvm" && [ -d "$NVM_DIR" ] && . "$NVM_DIR/nvm.sh"
@@ -47,7 +44,7 @@ else
 fi
 
 echo
-echo "[2/6] Downloading Python (portable, no sudo)..."
+echo "[2/4] Setting up Python..."
 if command -v python3 >/dev/null 2>&1; then
     PYVER=$(python3 --version 2>/dev/null | awk '{print $2}')
     echo "[INFO] System Python $PYVER found. Copying to portable folder..."
@@ -59,7 +56,7 @@ else
 fi
 
 echo
-echo "[3/6] Downloading Git (portable, no sudo)..."
+echo "[3/4] Setting up Git..."
 if command -v git >/dev/null 2>&1; then
     GITDIR="$(dirname $(dirname $(command -v git)))"
     cp -r "$GITDIR"/* "$PORTABLE_ROOT/02_RUNTIMES/git/" 2>/dev/null || true
@@ -69,7 +66,7 @@ else
 fi
 
 echo
-echo "[4/6] Setting up freellmapi..."
+echo "[4/4] Setting up freellmapi..."
 cd "$PORTABLE_ROOT/03_AI_TOOLS"
 if [ ! -d "freellmapi" ]; then
     git clone https://github.com/freellmapi/freellmapi.git freellmapi || echo "[WARN] freellmapi clone failed."
@@ -78,19 +75,6 @@ cd "$PORTABLE_ROOT/03_AI_TOOLS/freellmapi"
 npm install 2>/dev/null || echo "[WARN] npm install failed."
 npm run build 2>/dev/null || echo "[WARN] npm build failed."
 echo "[OK] freellmapi setup complete."
-
-echo
-echo "[5/6] Setting up VS Code (portable)..."
-if command -v code >/dev/null 2>&1; then
-    echo "[INFO] VS Code found on system. Use 'code --install-extension' for portable extensions."
-else
-    echo "[WARN] No VS Code. Download code from code.visualstudio.com and extract to 01_EDITORS/VSCode-Portable/"
-fi
-
-echo
-echo "[6/6] Cleaning up..."
-cd "$PORTABLE_ROOT"
-rm -rf "$TEMP_DIR"
 
 echo
 echo "============================================================"

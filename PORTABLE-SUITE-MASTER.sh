@@ -4,7 +4,7 @@ set -uo pipefail
 
 PORTABLE_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-export PATH="$PORTABLE_ROOT/02_RUNTIMES/node/bin:$PORTABLE_ROOT/02_RUNTIMES/python/bin:$PORTABLE_ROOT/02_RUNTIMES/python/bin:$PORTABLE_ROOT/02_RUNTIMES/git/bin:$PORTABLE_ROOT/05_UTILITIES/7-Zip-Portable:$PATH"
+export PATH="$PORTABLE_ROOT/02_RUNTIMES/node/bin:$PORTABLE_ROOT/02_RUNTIMES/python/bin:$PORTABLE_ROOT/02_RUNTIMES/git/bin:$PATH"
 export NPM_CONFIG_CACHE="$PORTABLE_ROOT/02_RUNTIMES/node/.npm-cache"
 
 menu() {
@@ -18,16 +18,15 @@ menu() {
     echo
     echo "  [1] Launch Claude Code CLI (via freellmapi zero-trace)"
     echo "  [2] Launch Portable VS Code"
-    echo "  [3] Launch Terminal"
-    echo "  [4] Open Developer Prompt (Node + Python + Git)"
-    echo "  [5] Run System Health & Environment Check"
-    echo "  [6] Initialize Git & Push to GitHub (avion121)"
-    echo "  [7] Auto-Setup Directory Structure"
-    echo "  [8] Auto-Download & Setup All Runtimes (First Time)"
+    echo "  [3] Open Developer Prompt (Node + Python + Git)"
+    echo "  [4] Run System Health & Environment Check"
+    echo "  [5] Initialize Git & Push to GitHub (avion121)"
+    echo "  [6] Auto-Setup Directory Structure"
+    echo "  [7] Auto-Download & Setup All Runtimes (First Time)"
     echo "  [0] Exit"
     echo
     echo "============================================================"
-    read -rp "Select an option (0-8) and press Enter: " choice
+    read -rp "Select an option (0-7) and press Enter: " choice
 }
 
 while true; do
@@ -63,15 +62,6 @@ while true; do
             ;;
         3)
             clear
-            echo "[OK] Launching terminal..."
-            if [ -n "${TMUX:-}" ] || [ -n "${STY:-}" ]; then
-                echo "[INFO] Already inside a terminal multiplexer."
-            else
-                exec "$SHELL"
-            fi
-            ;;
-        4)
-            clear
             echo "============================================================"
             echo "     PORTABLE DEVELOPER PROMPT"
             echo "============================================================"
@@ -79,7 +69,7 @@ while true; do
             echo
             exec "$SHELL"
             ;;
-        5)
+        4)
             clear
             if [ -f "$PORTABLE_ROOT/00_LAUNCHERS/Verify-Portable-Env.sh" ]; then
                 bash "$PORTABLE_ROOT/00_LAUNCHERS/Verify-Portable-Env.sh"
@@ -88,7 +78,7 @@ while true; do
             fi
             read -rp "Press Enter to return to menu..."
             ;;
-        6)
+        5)
             clear
             echo "============================================================"
             echo "     GIT INITIALIZATION & GITHUB PUSH (avion121)"
@@ -103,25 +93,23 @@ while true; do
             cd "$PORTABLE_ROOT"
             git init
             git add .
-            git commit -m "feat: portable dev suite cross-platform update" || echo "[INFO] Nothing to commit."
+            git commit -m "feat: portable claude code cli suite with freellmapi" || echo "[INFO] Nothing to commit."
             git branch -M main
             git remote remove origin >/dev/null 2>&1
             git remote add origin https://github.com/avion121/claude-code-portable.git
             git push -u origin main
             read -rp "Press Enter to return to menu..."
             ;;
-        7)
+        6)
             clear
             mkdir -p "$PORTABLE_ROOT/00_LAUNCHERS" "$PORTABLE_ROOT/01_EDITORS" \
                      "$PORTABLE_ROOT/02_RUNTIMES" "$PORTABLE_ROOT/02_RUNTIMES/python-portable" \
                      "$PORTABLE_ROOT/03_AI_TOOLS" "$PORTABLE_ROOT/04_DEV_TOOLS" \
-                     "$PORTABLE_ROOT/05_UTILITIES" "$PORTABLE_ROOT/05_UTILITIES/Windows-Terminal" \
-                     "$PORTABLE_ROOT/05_UTILITIES/Fiddler" "$PORTABLE_ROOT/05_UTILITIES/pageant" \
-                     "$PORTABLE_ROOT/05_UTILITIES/7-Zip-Portable"
+                     "$PORTABLE_ROOT/05_UTILITIES"
             echo "[OK] All directories verified/created."
             read -rp "Press Enter to return to menu..."
             ;;
-        8)
+        7)
             clear
             if [ -f "$PORTABLE_ROOT/00_LAUNCHERS/Setup-Runtimes.sh" ]; then
                 bash "$PORTABLE_ROOT/00_LAUNCHERS/Setup-Runtimes.sh"

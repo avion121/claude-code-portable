@@ -6,18 +6,15 @@ cd /d "%~dp0"
 set "PORTABLE_ROOT=%~dp0"
 for %%I in ("%PORTABLE_ROOT%") do set "PORTABLE_ROOT=%%~fI"
 
-rem Set portable environment paths (Node.js, Git, Python, Utilities)
+rem Set portable environment paths (Node.js, Git, Python)
 set "NODE_DIR=%PORTABLE_ROOT%02_RUNTIMES\node-v24.9.0-win-x64"
 set "GIT_DIR=%PORTABLE_ROOT%02_RUNTIMES\Git-Portable"
 set "PYTHON_DIR=%PORTABLE_ROOT%02_RUNTIMES\python-portable"
 set "FREELLMAPI_DIR=%PORTABLE_ROOT%03_AI_TOOLS\freellmapi"
 set "VSCODE_DIR=%PORTABLE_ROOT%01_EDITORS\VSCode-Portable"
-set "WT_DIR=%PORTABLE_ROOT%05_UTILITIES\Windows-Terminal"
-set "FIDDLER_DIR=%PORTABLE_ROOT%05_UTILITIES\Fiddler"
-set "PAGEANT_DIR=%PORTABLE_ROOT%05_UTILITIES\pageant"
 
 rem Include portable binaries in PATH
-set "PATH=%PYTHON_DIR%;%PYTHON_DIR%\Scripts;%NODE_DIR%;%GIT_DIR%\cmd;%PORTABLE_ROOT%05_UTILITIES\7-Zip-Portable;%PATH%"
+set "PATH=%PYTHON_DIR%;%PYTHON_DIR%\Scripts;%NODE_DIR%;%GIT_DIR%\cmd;%PATH%"
 set "npm_config_cache=%NODE_DIR%\.npm-cache"
 
 :MENU
@@ -31,28 +28,22 @@ echo ============================================================
 echo.
 echo   [1] Launch Claude Code CLI (via freellmapi zero-trace)
 echo   [2] Launch Portable VS Code
-echo   [3] Launch Windows Terminal (Tabbed Console)
-echo   [4] Launch Fiddler Classic (HTTP/HTTPS Proxy Debugger)
-echo   [5] Launch Pageant (PuTTY SSH Key Agent)
-echo   [6] Open Developer Command Prompt (Node + Python + Git)
-echo   [7] Run System Health ^& Environment Check
-echo   [8] Initialize Git ^& Push Project to GitHub (avion121)
-echo   [9] Auto-Setup Directory Structure ^& Check Runtimes
+echo   [3] Open Developer Command Prompt (Node + Python + Git)
+echo   [4] Run System Health ^& Environment Check
+echo   [5] Initialize Git ^& Push Project to GitHub (avion121)
+echo   [6] Auto-Setup Directory Structure ^& Check Runtimes
 echo   [0] Auto-Download ^& Setup All Runtimes (First Time)
 echo   [X] Exit
 echo.
 echo ============================================================
-set /p CHOICE="Select an option (0-10, X) and press Enter: "
+set /p CHOICE="Select an option (0-6, X) and press Enter: "
 
 if "%CHOICE%"=="1" goto LAUNCH_CLAUDE
 if "%CHOICE%"=="2" goto LAUNCH_VSCODE
-if "%CHOICE%"=="3" goto LAUNCH_WT
-if "%CHOICE%"=="4" goto LAUNCH_FIDDLER
-if "%CHOICE%"=="5" goto LAUNCH_PAGEANT
-if "%CHOICE%"=="6" goto LAUNCH_CLI
-if "%CHOICE%"=="7" goto DIAGNOSTICS
-if "%CHOICE%"=="8" goto PUSH_GITHUB
-if "%CHOICE%"=="9" goto SETUP_DIRS
+if "%CHOICE%"=="3" goto LAUNCH_CLI
+if "%CHOICE%"=="4" goto DIAGNOSTICS
+if "%CHOICE%"=="5" goto PUSH_GITHUB
+if "%CHOICE%"=="6" goto SETUP_DIRS
 if "%CHOICE%"=="0" goto SETUP_RUNTIMES
 if /i "%CHOICE%"=="X" goto EXIT_APP
 goto MENU
@@ -96,57 +87,12 @@ echo.
 pause
 goto MENU
 
-:LAUNCH_WT
-cls
-echo ============================================================
-echo           LAUNCHING PORTABLE WINDOWS TERMINAL
-echo ============================================================
-if exist "%WT_DIR%\wt.exe" (
-    start "" "%WT_DIR%\wt.exe"
-    echo [OK] Windows Terminal launched.
-) else (
-    echo [ERROR] wt.exe not found at %WT_DIR%
-)
-echo.
-pause
-goto MENU
-
-:LAUNCH_FIDDLER
-cls
-echo ============================================================
-echo           LAUNCHING FIDDLER CLASSIC HTTP PROXY
-echo ============================================================
-if exist "%FIDDLER_DIR%\Fiddler.exe" (
-    start "" "%FIDDLER_DIR%\Fiddler.exe"
-    echo [OK] Fiddler Classic launched.
-) else (
-    echo [ERROR] Fiddler.exe not found at %FIDDLER_DIR%
-)
-echo.
-pause
-goto MENU
-
-:LAUNCH_PAGEANT
-cls
-echo ============================================================
-echo           LAUNCHING PAGEANT SSH KEY AGENT
-echo ============================================================
-if exist "%PAGEANT_DIR%\pageant.exe" (
-    start "" "%PAGEANT_DIR%\pageant.exe"
-    echo [OK] Pageant SSH Agent launched.
-) else (
-    echo [ERROR] pageant.exe not found at %PAGEANT_DIR%
-)
-echo.
-pause
-goto MENU
-
 :LAUNCH_CLI
 cls
 echo ============================================================
 echo            PORTABLE DEVELOPER COMMAND PROMPT
 echo ============================================================
-echo Environment loaded with Node, Python, Git, and portable utilities.
+echo Environment loaded with Node, Python, Git.
 echo.
 cmd /k "echo Type 'node -v', 'python --version', 'git --version', or exit to return to menu."
 goto MENU
@@ -177,24 +123,6 @@ if exist "%GIT_DIR%\cmd\git.exe" (
 ) else (
     echo [FAIL] Git missing at %GIT_DIR%
     set /a ERR_COUNT=ERR_COUNT+1
-)
-
-if exist "%WT_DIR%\wt.exe" (
-    echo [OK] Windows Terminal found.
-) else (
-    echo [WARN] Windows Terminal missing at %WT_DIR%
-)
-
-if exist "%FIDDLER_DIR%\Fiddler.exe" (
-    echo [OK] Fiddler Classic found.
-) else (
-    echo [WARN] Fiddler Classic missing at %FIDDLER_DIR%
-)
-
-if exist "%PAGEANT_DIR%\pageant.exe" (
-    echo [OK] Pageant SSH Agent found.
-) else (
-    echo [WARN] Pageant SSH Agent missing at %PAGEANT_DIR%
 )
 
 if exist "%FREELLMAPI_DIR%\dist\index.js" (
@@ -236,7 +164,7 @@ echo.
 echo [*] Initializing Git...
 git init
 git add .
-git commit -m "feat: replace claude code desktop with cli via freellmapi and add dev utilities"
+git commit -m "feat: portable claude code cli suite with freellmapi"
 git branch -M main
 git remote remove origin >nul 2>&1
 git remote add origin https://github.com/avion121/claude-code-portable.git
@@ -268,9 +196,6 @@ if not exist "%PORTABLE_ROOT%02_RUNTIMES\python-portable" mkdir "%PORTABLE_ROOT%
 if not exist "%PORTABLE_ROOT%03_AI_TOOLS" mkdir "%PORTABLE_ROOT%03_AI_TOOLS"
 if not exist "%PORTABLE_ROOT%04_DEV_TOOLS" mkdir "%PORTABLE_ROOT%04_DEV_TOOLS"
 if not exist "%PORTABLE_ROOT%05_UTILITIES" mkdir "%PORTABLE_ROOT%05_UTILITIES"
-if not exist "%PORTABLE_ROOT%05_UTILITIES\Windows-Terminal" mkdir "%PORTABLE_ROOT%05_UTILITIES\Windows-Terminal"
-if not exist "%PORTABLE_ROOT%05_UTILITIES\Fiddler" mkdir "%PORTABLE_ROOT%05_UTILITIES\Fiddler"
-if not exist "%PORTABLE_ROOT%05_UTILITIES\pageant" mkdir "%PORTABLE_ROOT%05_UTILITIES\pageant"
 
 echo [OK] All directories verified/created.
 echo.

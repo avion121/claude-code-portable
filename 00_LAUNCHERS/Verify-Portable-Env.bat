@@ -17,6 +17,14 @@ if exist "%DEV_ROOT%\02_RUNTIMES\node-v24.9.0-win-x64\node.exe" (
     set /a ERR_COUNT=ERR_COUNT+1
 )
 
+rem Check Python
+if exist "%DEV_ROOT%\02_RUNTIMES\python-portable\python.exe" (
+    echo [OK] Portable Python detected.
+) else (
+    echo [FAIL] Python missing at 02_RUNTIMES\python-portable
+    set /a ERR_COUNT=ERR_COUNT+1
+)
+
 rem Check Git
 if exist "%DEV_ROOT%\02_RUNTIMES\Git-Portable\cmd\git.exe" (
     echo [OK] Portable Git detected.
@@ -33,6 +41,14 @@ if exist "%DEV_ROOT%\03_AI_TOOLS\freellmapi\dist\index.js" (
     set /a ERR_COUNT=ERR_COUNT+1
 )
 
+rem Check VS Code Portable
+if exist "%DEV_ROOT%\01_EDITORS\VSCode-Portable\Code.exe" (
+    echo [OK] VS Code Portable detected.
+) else (
+    echo [FAIL] VS Code missing at 01_EDITORS\VSCode-Portable
+    set /a ERR_COUNT=ERR_COUNT+1
+)
+
 echo.
 echo ============================================================
 if %ERR_COUNT%==0 (
@@ -42,4 +58,4 @@ if %ERR_COUNT%==0 (
 )
 echo ============================================================
 echo.
-exit /b %ERR_COUNT%
+exit /b %ERR_COUNT%

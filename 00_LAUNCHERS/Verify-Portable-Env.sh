@@ -35,12 +35,9 @@ else
 fi
 
 echo
-echo "--- Editors & Utilities ---"
+echo "--- Editors ---"
 for f in \
-    "$PORTABLE_ROOT/01_EDITORS/VSCode-Portable/code" \
-    "$PORTABLE_ROOT/05_UTILITIES/Windows-Terminal/wt" \
-    "$PORTABLE_ROOT/05_UTILITIES/pageant/pageant" \
-    "$PORTABLE_ROOT/05_UTILITIES/7-Zip-Portable/7z"; do
+    "$PORTABLE_ROOT/01_EDITORS/VSCode-Portable/code"; do
     if [ -x "$f" ] || [ -f "$f" ]; then
         echo "[OK] Found: $f"
     else
