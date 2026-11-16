@@ -30,21 +30,15 @@ echo   [1] Launch Claude Code CLI (via freellmapi zero-trace)
 echo   [2] Launch Portable VS Code
 echo   [3] Open Developer Command Prompt (Node + Python + Git)
 echo   [4] Run System Health ^& Environment Check
-echo   [5] Initialize Git ^& Push Project to GitHub (avion121)
-echo   [6] Auto-Setup Directory Structure ^& Check Runtimes
-echo   [0] Auto-Download ^& Setup All Runtimes (First Time)
 echo   [X] Exit
 echo.
 echo ============================================================
-set /p CHOICE="Select an option (0-6, X) and press Enter: "
+set /p CHOICE="Select an option (1-4, X) and press Enter: "
 
 if "%CHOICE%"=="1" goto LAUNCH_CLAUDE
 if "%CHOICE%"=="2" goto LAUNCH_VSCODE
 if "%CHOICE%"=="3" goto LAUNCH_CLI
 if "%CHOICE%"=="4" goto DIAGNOSTICS
-if "%CHOICE%"=="5" goto PUSH_GITHUB
-if "%CHOICE%"=="6" goto SETUP_DIRS
-if "%CHOICE%"=="0" goto SETUP_RUNTIMES
 if /i "%CHOICE%"=="X" goto EXIT_APP
 goto MENU
 
