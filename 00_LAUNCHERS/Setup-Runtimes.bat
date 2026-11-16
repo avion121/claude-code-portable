@@ -149,4 +149,4 @@ echo 1. Run WinPython installer if it didn't auto-complete
 echo 2. Run Fiddler installer if download was skipped
 echo 3. Run: PORTABLE-SUITE-MASTER.bat -> Option [7] to verify
 echo.
-pause
+pause

@@ -2,7 +2,7 @@
 title Portable Environment Verification
 cd /d "%~dp0.."
 set "DEV_ROOT=%CD%"
-set "ERR_COUNT=0"
+set ERR_COUNT=0
 
 echo ============================================================
 echo         PORTABLE ENVIRONMENT INTEGRITY CHECK
@@ -14,7 +14,7 @@ if exist "%DEV_ROOT%\02_RUNTIMES\node-v24.9.0-win-x64\node.exe" (
     echo [OK] Node.js binary detected.
 ) else (
     echo [FAIL] Node.js missing at 02_RUNTIMES\node-v24.9.0-win-x64
-    set /a ERR_COUNT+=1
+    set ERR_COUNT=1
 )
 
 rem Check Git
@@ -22,7 +22,7 @@ if exist "%DEV_ROOT%\02_RUNTIMES\Git-Portable\cmd\git.exe" (
     echo [OK] Portable Git detected.
 ) else (
     echo [FAIL] Git missing at 02_RUNTIMES\Git-Portable
-    set /a ERR_COUNT+=1
+    set ERR_COUNT=1
 )
 
 rem Check freellmapi built CLI
@@ -30,7 +30,7 @@ if exist "%DEV_ROOT%\03_AI_TOOLS\freellmapi\dist\index.js" (
     echo [OK] freellmapi CLI build verified.
 ) else (
     echo [FAIL] freellmapi build missing at 03_AI_TOOLS\freellmapi\dist\index.js
-    set /a ERR_COUNT+=1
+    set ERR_COUNT=1
 )
 
 echo.
@@ -42,4 +42,4 @@ if %ERR_COUNT%==0 (
 )
 echo ============================================================
 echo.
-pause
+exit /b %ERR_COUNT%

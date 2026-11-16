@@ -15,4 +15,4 @@ if exist "%WT_DIR%\wt.exe" (
     echo Please extract Windows Terminal zip to this directory.
     pause
     exit /b 1
-)
+)

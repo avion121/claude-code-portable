@@ -12,4 +12,4 @@ if exist "%PAGEANT_DIR%\pageant.exe" (
     echo Please extract PuTTY Portable to this directory.
     pause
     exit /b 1
-)
+)

@@ -12,4 +12,4 @@ if exist "%FIDDLER_DIR%\Fiddler.exe" (
     echo Please extract Fiddler Classic Portable to this directory.
     pause
     exit /b 1
-)
+)

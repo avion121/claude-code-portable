@@ -23,7 +23,7 @@ set "npm_config_cache=%NODE_DIR%\.npm-cache"
 :MENU
 cls
 echo ============================================================
-echo      PORTABLE CLAUDE CODE CLI & DEV SUITE MASTER CONTROL
+echo      PORTABLE CLAUDE CODE CLI ^& DEV SUITE MASTER CONTROL
 echo ============================================================
 echo  Root Directory: %PORTABLE_ROOT%
 echo  Runtimes      : Node.js, Python, Git
@@ -35,10 +35,10 @@ echo   [3] Launch Windows Terminal (Tabbed Console)
 echo   [4] Launch Fiddler Classic (HTTP/HTTPS Proxy Debugger)
 echo   [5] Launch Pageant (PuTTY SSH Key Agent)
 echo   [6] Open Developer Command Prompt (Node + Python + Git)
-echo   [7] Run System Health & Environment Check
-echo   [8] Initialize Git & Push Project to GitHub (avion121)
-echo   [9] Auto-Setup Directory Structure & Check Runtimes
-echo   [0] Auto-Download & Setup All Runtimes (First Time)
+echo   [7] Run System Health ^& Environment Check
+echo   [8] Initialize Git ^& Push Project to GitHub (avion121)
+echo   [9] Auto-Setup Directory Structure ^& Check Runtimes
+echo   [0] Auto-Download ^& Setup All Runtimes (First Time)
 echo   [X] Exit
 echo.
 echo ============================================================
@@ -224,7 +224,7 @@ goto MENU
 :PUSH_GITHUB
 cls
 echo ============================================================
-echo         GIT INITIALIZATION & GITHUB PUSH (avion121)
+echo         GIT INITIALIZATION ^& GITHUB PUSH (avion121)
 echo ============================================================
 echo.
 echo Target Repository: https://github.com/avion121/claude-code-portable.git
